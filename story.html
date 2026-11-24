@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case File No. 001 — The Mystery of the Locked Study</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CUSTOM CSS -->
+    <style>
+        /* STORY SECTION */
+        .case-archive {
+            background-color: #0A0908;
+            color: #EAE0D5;
+            padding: 90px 20px;
+            text-align: center;
+        }
+
+        .archive-label,
+        .character-label,
+        .evidence-label {
+            color: #C6AC8F;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .archive-title {
+            color: #E8D6B8;
+            font-family: 'Cinzel', serif;
+            font-size: 46px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .archive-divider,
+        .character-divider,
+        .evidence-divider {
+            color: #B89561;
+            margin: 25px 0;
+            letter-spacing: 5px;
+        }
+
+        .character-divider,
+        .evidence-divider {
+            margin-bottom: 45px;
+        }
+
+        .archive-subtitle {
+            color: #C6AC8F;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .archive-poem {
+            color: #EAE0D5;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 23px;
+            line-height: 1.8;
+        }
+
+        .story-content {
+            max-width: 950px;
+            margin: 55px auto 30px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 21px;
+            line-height: 1.9;
+            color: #EAE0D5;
+        }
+
+        .story-content p {
+            margin-bottom: 23px;
+        }
+
+        .story-time {
+            color: #D0AC72;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .story-image {
+            width: 43%;
+            height: 350px;
+            object-fit: cover;
+            border: 1px solid #B89561;
+            padding: 6px;
+            background: #211912;
+        }
+
+        .archive-description {
+            color: #C6AC8F;
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            line-height: 1.9;
+            max-width: 650px;
+            margin: 25px auto;
+        }
+
+        .archive-footer,
+        .evidence-footer {
+            background-color: #30231D;
+            color: #D9C3A2;
+            padding: 17px;
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-top: 45px;
+        }
+
+        /* CHARACTERS & EVIDENCE SECTIONS */
+        .characters-section {
+            background-color: #12100E;
+            color: #EAE0D5;
+            padding: 90px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(198,172,143,0.2);
+        }
+
+        .evidence-section {
+            background-color: #0A0908;
+            color: #EAE0D5;
+            padding: 90px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(198,172,143,0.2);
+        }
+
+        .characters-title,
+        .evidence-title {
+            color: #E8D6B8;
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+
+        .characters-subtitle,
+        .evidence-subtitle {
+            color: #C6AC8F;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 25px;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        /* SUSPECT & EVIDENCE CARDS */
+        .suspect-card,
+        .evidence-card {
+            background-color: #1C1814;
+            border: 1px solid #705638;
+            border-radius: 3px;
+            overflow: hidden;
+            text-align: left;
+            transition: all 0.4s ease;
+        }
+
+        .suspect-card:hover,
+        .evidence-card:hover {
+            transform: translateY(-9px);
+            border-color: #C6AC8F;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+        }
+
+        .suspect-image {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-bottom: 1px solid #705638;
+            filter: sepia(15%) brightness(0.85);
+            transition: 0.4s ease;
+        }
+
+        .evidence-image {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-bottom: 1px solid #705638;
+            filter: sepia(15%) brightness(0.85);
+            transition: 0.4s ease;
+        }
+
+        .suspect-card:hover .suspect-image,
+        .evidence-card:hover .evidence-image {
+            filter: sepia(0%) brightness(1);
+        }
+
+        .suspect-card .card-body,
+        .evidence-card .card-body {
+            padding: 27px;
+        }
+
+        .suspect-number,
+        .evidence-number {
+            color: #B89561;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .suspect-card .card-title,
+        .evidence-card .card-title {
+            color: #E8D6B8;
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .suspect-card .card-text,
+        .evidence-card .card-text {
+            color: #C6AC8F;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        .suspect-footer {
+            border-top: 1px solid rgba(198,172,143,0.2);
+            color: #B89561;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            padding-top: 17px;
+            margin-top: 20px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .archive-title {
+                font-size: 34px;
+            }
+
+            .story-content {
+                font-size: 19px;
+            }
+
+            .story-image {
+                width: 100%;
+                height: 270px;
+                float: none !important;
+                margin: 0 0 25px 0 !important;
+            }
+
+            .characters-title,
+            .evidence-title {
+                font-size: 30px;
+            }
+
+            .suspect-image {
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .case-archive,
+            .characters-section,
+            .evidence-section {
+                padding: 65px 18px;
+            }
+
+            .archive-title {
+                font-size: 28px;
+                letter-spacing: 1.5px;
+            }
+
+            .archive-subtitle {
+                font-size: 23px;
+            }
+
+            .archive-poem {
+                font-size: 19px;
+            }
+
+            .archive-description {
+                font-size: 13px;
+            }
+
+            .characters-title,
+            .evidence-title {
+                font-size: 26px;
+                letter-spacing: 1px;
+            }
+
+            .characters-subtitle,
+            .evidence-subtitle {
+                font-size: 21px;
+            }
+
+            .suspect-image {
+                height: 300px;
+            }
+        }
+        /* THE TRUTH BEHIND THE MISSING NECKLACE */
+
+.truth-section {
+    background-color: #15110E;
+    color: #EAE0D5;
+    padding: 90px 20px;
+    border-top: 1px solid rgba(198,172,143,0.2);
+}
+
+.truth-label {
+    color: #C6AC8F;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.truth-title {
+    color: #E8D6B8;
+    font-family: 'Cinzel', serif;
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.truth-divider {
+    color: #B89561;
+    text-align: center;
+    letter-spacing: 4px;
+    margin: 25px 0 45px;
+}
+
+.truth-content {
+    color: #D9C3A2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.truth-content p {
+    margin-bottom: 23px;
+}
+
+.truth-image {
+    width: 43%;
+    height: 350px;
+    object-fit: cover;
+    border: 1px solid #705638;
+    padding: 5px;
+    background-color: #211912;
+    filter: sepia(20%) brightness(0.85);
+    transition: 0.4s ease;
+}
+
+.truth-image:hover {
+    filter: sepia(0%) brightness(1);
+    transform: scale(1.02);
+}
+
+.truth-footer {
+    background-color: #30231D;
+    color: #D9C3A2;
+    padding: 17px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-top: 35px;
+}
+
+/* TABLET RESPONSIVENESS */
+
+@media (max-width: 768px) {
+    .truth-title {
+        font-size: 28px;
+    }
+
+    .truth-content {
+        font-size: 19px;
+    }
+
+    .truth-image {
+        width: 100%;
+        height: 280px;
+        float: none !important;
+        margin: 0 0 20px 0 !important;
+    }
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 576px) {
+    .truth-section {
+        padding: 65px 18px;
+    }
+
+    .truth-title {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .truth-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .truth-content {
+        font-size: 18px;
+    }
+
+    .truth-footer {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+}
+        /* YOUR TURN TO INVESTIGATE */
+
+.investigation-section {
+    background-color: #12100E;
+    color: #EAE0D5;
+    padding: 90px 20px;
+    text-align: center;
+    border-top: 1px solid #705638;
+}
+
+.investigation-title {
+    color: #E8D6B8;
+    font-family: 'Cinzel', serif;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+.investigation-subtitle {
+    color: #C6AC8F;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.question-card {
+    background-color: #1C1814;
+    border: 1px solid #705638;
+    border-radius: 3px;
+    padding: 30px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.question-title {
+    color: #D0AC72;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.question-text {
+    color: #E8D6B8;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    margin-bottom: 22px;
+}
+
+.question-card .form-check {
+    background-color: #30231D;
+    padding: 12px 15px 12px 40px;
+    margin-bottom: 12px;
+    border: 1px solid #705638;
+}
+
+.question-card .form-check-label {
+    color: #EAE0D5;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+}
+
+.question-card .form-check-input {
+    background-color: #EAE0D5;
+    border-color: #B89561;
+}
+
+.question-card .form-check-input:checked {
+    background-color: #B89561;
+    border-color: #B89561;
+}
+
+/* SUSPECT DROPDOWN */
+
+.suspect-select {
+    background-color: #30231D;
+    color: #EAE0D5;
+    border: 1px solid #B89561;
+    padding: 13px;
+    font-family: 'Lato', sans-serif;
+}
+
+.suspect-select option {
+    background-color: #1C1814;
+    color: #EAE0D5;
+}
+
+.investigation-footer {
+    background-color: #30231D;
+    color: #D9C3A2;
+    padding: 17px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 45px;
+}
+
+@media (max-width: 576px) {
+    .investigation-title {
+        font-size: 27px;
+    }
+
+    .investigation-subtitle {
+        font-size: 21px;
+    }
+
+    .question-text {
+        font-size: 19px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- ============================= -->
+    <!-- THE MYSTERY OF THE LOCKED STUDY -->
+    <!-- ============================= -->
+
+    <section class="case-archive">
+        <div class="container">
+            <p class="archive-label">✦ CASE FILE NO. 001 ✦</p>
+
+            <h1 class="archive-title">
+                THE MYSTERY OF<br>
+                THE LOCKED STUDY
+            </h1>
+
+            <div class="archive-divider">───────── ❖ ─────────</div>
+
+            <h2 class="archive-subtitle">
+                Every locked door hides a secret...
+            </h2>
+
+            <p class="archive-poem">
+                "A silent room, a vanished prize,<br>
+                A web of secrets and hidden lies.<br>
+                Three suspects, one truth to find,<br>
+                Can you uncover what's left behind?"
+            </p>
+
+            <!-- STORY DESCRIPTION -->
+            <div class="story-content text-start clearfix">
+                <img
+                    src="WhatsApp Image 2026-11-24 at 12.20.39.jpeg"
+                    class="col-md-5 float-md-end mb-4 ms-md-4 story-image"
+                    alt="Blackwood Mansion">
+
+                <p class="story-time">
+                    11:45 PM — Blackwood Mansion, London
+                </p>
+
+                <p>
+                    It was a cold November night in London. At exactly
+                    11:45 PM, Inspector Holmes received an urgent message
+                    from Blackwood Mansion. A wealthy businessman,
+                    Mr. Edward Blackwood, had been found unconscious
+                    in his study, and his priceless diamond necklace
+                    had disappeared.
+                </p>
+
+                <p>
+                    The strange part? The study was locked from the
+                    inside. All the windows were shut, the fireplace
+                    was too narrow for anyone to enter, and the only
+                    key was lying beside the desk.
+                </p>
+
+                <p>
+                    Three people were inside the mansion that night:
+                    Mrs. Blackwood, who claimed she was reading in her
+                    bedroom; Thomas, the butler, who said he was
+                    preparing tea in the kitchen; and Clara,
+                    Mr. Blackwood's niece, who claimed she was playing
+                    the piano in the drawing room.
+                </p>
+            </div>
+
+            <div class="archive-divider">───────── ✦ ─────────</div>
+
+            <p class="archive-description">
+                Three people. Three different stories.
+                One missing necklace. One locked room.
+                The truth is buried somewhere between the clues.
+                Will you be able to solve the mystery?
+            </p>
+
+            <div class="archive-footer">
+                CONFIDENTIAL CASE FILE • INVESTIGATION IN PROGRESS
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- MEET THE CHARACTERS -->
+    <!-- ============================= -->
+
+    <section class="characters-section">
+        <div class="container">
+            <p class="character-label">✦ KNOW THE SUSPECTS ✦</p>
+
+            <h2 class="characters-title">MEET THE CHARACTERS</h2>
+
+            <p class="characters-subtitle">
+                Everyone has a story. But is everyone telling the truth?
+            </p>
+
+            <div class="character-divider">───────── ❖ ─────────</div>
+
+            <!-- CHARACTER CARDS -->
+            <div class="row g-4 justify-content-center">
+
+                <!-- CARD 1: MRS BLACKWOOD -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card suspect-card h-100">
+                        <img
+                            src="WhatsApp Image 2026-11-24 at 10.57.58.jpeg"
+                            class="card-img-top suspect-image"
+                            alt="Mrs. Blackwood">
+
+                        <div class="card-body">
+                            <p class="suspect-number">SUSPECT NO. 01</p>
+                            <h3 class="card-title">Mrs. Blackwood</h3>
+                            <p class="card-text">
+                                Add Mrs. Blackwood's character
+                                description here. Mention her
+                                personality, alibi and suspicious
+                                behaviour.
+                            </p>
+                            <div class="suspect-footer">THE WIFE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: THOMAS -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card suspect-card h-100">
+                        <img
+                            src="WhatsApp Image 2026-11-24 at 10.58.28.jpeg"
+                            class="card-img-top suspect-image"
+                            alt="Thomas the Butler">
+
+                        <div class="card-body">
+                            <p class="suspect-number">SUSPECT NO. 02</p>
+                            <h3 class="card-title">Thomas</h3>
+                            <p class="card-text">
+                                Add Thomas's character description
+                                here. Mention his role in the mansion,
+                                his alibi and any unusual details.
+                            </p>
+                            <div class="suspect-footer">THE BUTLER</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: CLARA -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card suspect-card h-100">
+                        <img
+                            src="WhatsApp Image 2026-11-24 at 11.00.27.jpeg"
+                            class="card-img-top suspect-image"
+                            alt="Clara">
+
+                        <div class="card-body">
+                            <p class="suspect-number">SUSPECT NO. 03</p>
+                            <h3 class="card-title">Clara</h3>
+                            <p class="card-text">
+                                Add Clara's character description
+                                here. Mention her relationship with
+                                Mr. Blackwood, her alibi and
+                                suspicious behaviour.
+                            </p>
+                            <div class="suspect-footer">THE NIECE</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- THE EVIDENCE ROOM -->
+    <!-- ============================= -->
+
+    <section class="evidence-section">
+        <div class="container">
+            <p class="evidence-label">✦ THE CLUES THAT MATTER ✦</p>
+
+            <h2 class="evidence-title">THE EVIDENCE ROOM</h2>
+
+            <p class="evidence-subtitle">
+                Every detail matters. Nothing is a coincidence.
+            </p>
+
+            <div class="evidence-divider">───────── ❖ ─────────</div>
+
+            <!-- FOUR EVIDENCE CARDS -->
+            <div class="row g-4 justify-content-center">
+
+                <!-- EVIDENCE 1 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card evidence-card h-100">
+                        <img
+                            src="WhatsApp Image 2026-11-24 at 12.39.26.jpeg"
+                            class="card-img-top evidence-image"
+                            alt="Half-empty teacup">
+
+                        <div class="card-body">
+                            <p class="evidence-number">EVIDENCE NO. 01</p>
+                            <h3 class="card-title">The Unusual Teacup</h3>
+                            <p class="card-text">
+                                A half-empty teacup was found on
+                                Mr. Blackwood's desk. The tea was
+                                still warm, but he never drank tea
+                                at night.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVIDENCE 2 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card evidence-card h-100">
+                        <img
+                            src="WhatsApp Image 2026-11-24 at 12.36.26.jpeg"
+                            class="card-img-top evidence-image"
+                            alt="Dusty piano keys">
+
+                        <div class="card-body">
+                            <p class="evidence-number">EVIDENCE NO. 02</p>
+                            <h3 class="card-title">The Dusty Piano</h3>
+                            <p class="card-text">
+                                Clara claimed she was playing the
+                                piano all evening. However, the
+                                piano keys were covered in dust.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVIDENCE 3 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card evidence-card h-100">
+                        <img
+                            src="WhatsApp Image 2026-11-24 at 12.37.48.jpeg"
+                            class="card-img-top evidence-image"
+                            alt="Blue fabric evidence">
+
+                        <div class="card-body">
+                            <p class="evidence-number">EVIDENCE NO. 03</p>
+                            <h3 class="card-title">The Blue Fabric</h3>
+                            <p class="card-text">
+                                A piece of blue fabric was found
+                                caught beneath the desk drawer.
+                                It resembles Mrs. Blackwood's
+                                blue silk dress.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVIDENCE 4 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card evidence-card h-100">
+                        <img
+                            src="Antique Clock at 11_20.png"
+                            class="card-img-top evidence-image"
+                            alt="Stopped grandfather clock">
+
+                        <div class="card-body">
+                            <p class="evidence-number">EVIDENCE NO. 04</p>
+                            <h3 class="card-title">The Stopped Clock</h3>
+                            <p class="card-text">
+                                The grandfather clock outside
+                                the study had stopped at exactly
+                                11:20 PM. Was it an accident
+                                or a deliberate distraction?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="evidence-footer">
+                FOUR CLUES • THREE SUSPECTS • ONE MYSTERY
+            </div>
+        </div>
+    </section>
+    <div class="clearfix">
+  <img src="..." class="col-md-6 float-md-end mb-3 ms-md-3" alt="...">
+  
+<!-- ============================= -->
+<!-- YOUR TURN TO INVESTIGATE -->
+<!-- ============================= -->
+
+<section class="investigation-section">
+
+    <div class="container">
+
+        <p class="evidence-label">
+            ✦ THE FINAL TEST ✦
+        </p>
+
+        <h2 class="investigation-title">
+            YOUR TURN TO INVESTIGATE
+        </h2>
+
+        <p class="investigation-subtitle">
+            Observe the clues. Question the statements.
+            Trust your detective instincts.
+        </p>
+
+        <div class="evidence-divider">
+            ──────── ❖ ────────
+        </div>
+
+        <form>
+
+            <!-- QUESTION 1 -->
+
+            <div class="question-card">
+
+                <p class="question-title">QUESTION NO. 01</p>
+
+                <h3 class="question-text">
+                    Mr. Blackwood never drank tea at night.
+                    The tea was still warm when Holmes found it.
+                </h3>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question1" id="q1a" value="option1">
+
+                    <label class="form-check-label" for="q1a">
+                        It may help estimate how recently someone was in the study.
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question1" id="q1b" value="option2">
+
+                    <label class="form-check-label" for="q1b">
+                        It proves the necklace was inside the cup.
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question1" id="q1c" value="option3">
+
+                    <label class="form-check-label" for="q1c">
+                        It proves that the room was never locked.
+                    </label>
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 2 -->
+
+            <div class="question-card">
+
+                <p class="question-title">QUESTION NO. 02</p>
+
+                <h3 class="question-text">
+                    Clara says she played the piano all evening,
+                    but its keys were dusty.
+                </h3>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question2" id="q2a" value="option1">
+
+                    <label class="form-check-label" for="q2a">
+                        The piano was recently polished.
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question2" id="q2b" value="option2">
+
+                    <label class="form-check-label" for="q2b">
+                        Her statement may not match the physical evidence.
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question2" id="q2c" value="option3">
+
+                    <label class="form-check-label" for="q2c">
+                        The butler must have played the piano.
+                    </label>
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION 3 -->
+
+            <div class="question-card">
+
+                <p class="question-title">QUESTION NO. 03</p>
+
+                <h3 class="question-text">
+                    The clock stopped at 11:20 PM.
+                    Is that automatically the time of the incident?
+                </h3>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question3" id="q3a" value="option1">
+
+                    <label class="form-check-label" for="q3a">
+                        Accept it as the exact time without checking.
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question3" id="q3b" value="option2">
+
+                    <label class="form-check-label" for="q3b">
+                        Check whether it stopped naturally or was deliberately altered.
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="question3" id="q3c" value="option3">
+
+                    <label class="form-check-label" for="q3c">
+                        Ignore it because clocks are never useful.
+                    </label>
+                </div>
+
+            </div>
+            </div>
+    <section class="truth-section">
+        <div class="container">
+
+            <p class="truth-label">✦ A SECRET FROM THE PAST ✦</p>
+
+            <h2 class="truth-title">
+                THE TRUTH BEHIND THE MISSING NECKLACE
+            </h2>
+
+            <div class="truth-divider">──────── ❖ ────────</div>
+
+            <div class="clearfix truth-content">
+                <img
+                    src="images/old-photograph.jpg"
+                    class="col-md-6 float-md-end mb-3 ms-md-4 truth-image"
+                    alt="An old family photograph showing a mysterious woman wearing a diamond necklace">
+
+                <p>
+                    Just as I began to believe that the mystery was confined
+                    to the locked study, a discovery changed everything.
+                    The diamond necklace was not simply stolen—it had been
+                    hidden somewhere inside Blackwood Mansion long before
+                    that mysterious night.
+                </p>
+
+                <p>
+                    A closer examination of the old photograph from 1998
+                    revealed a familiar detail: the necklace was visible
+                    around the neck of a woman who was never mentioned in
+                    the family records. Why had Mr. Blackwood kept this
+                    secret for so many years?
+                </p>
+
+                <p>
+                    And why did someone suddenly want the necklace to
+                    disappear? Perhaps the real mystery was never about
+                    who stole a priceless jewel, but about the secret it
+                    carried. The necklace may be missing, but its truth
+                    is about to be uncovered.
+                </p>
+            </div>
+
+            <div class="truth-footer">
+                SOME SECRETS ARE OLDER THAN THE MANSION ITSELF.
+            </div>
+
+        </div>
+    </section>
+
+
+
+            <!-- QUESTION 4: SUSPECT SELECTION -->
+
+            <div class="question-card">
+
+                <p class="question-title">QUESTION NO. 04</p>
+
+                <h3 class="question-text">
+                    Choose the person who best fits your theory.
+                    You can revise your thinking as you investigate.
+                </h3>
+
+                <label for="suspect" class="form-label"
+                    style="color: #D0AC72; font-family: 'Cinzel', serif;">
+                    SELECT YOUR SUSPECT
+                </label>
+
+                <select class="form-select suspect-select"
+                    id="suspect" name="suspect" required>
+
+                    <option value="" selected disabled>
+                        -- Choose a Suspect --
+                    </option>
+
+                    <option value="Mrs. Blackwood">
+                        Mrs. Blackwood
+                    </option>
+
+                    <option value="Thomas">
+                        Thomas – The Butler
+                    </option>
+
+                    <option value="Clara">
+                        Clara – The Niece
+                    </option>
+
+                </select>
+
+            </div>
+
+        </form>
+
+        <div class="investigation-footer">
+            FOUR QUESTIONS • THREE SUSPECTS • ONE MYSTERY
+        </div>
+
+    
+</section>
+
+  
+
+
+</section>
+
+</body>
+</html>
